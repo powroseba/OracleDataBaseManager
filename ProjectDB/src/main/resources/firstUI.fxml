@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="654.0" prefWidth="709.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="30.0" prefWidth="709.0">
+         <children>
+            <MenuBar id="menuBar" prefHeight="28.0" prefWidth="709.0" styleClass=".menuBar">
+              <menus>
+                <Menu fx:id="fileButton" mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="menuCloseButton" mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu fx:id="editButton" mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem fx:id="menuClearButton" mnemonicParsing="false" text="Clear" />
+                  </items>
+                </Menu>
+                <Menu fx:id="helpButton" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="menuAboutButton" mnemonicParsing="false" text="About" />
+                        <MenuItem fx:id="menuUserGuide" mnemonicParsing="false" text="User Guide" />
+                  </items>
+                </Menu>
+              </menus>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </MenuBar>
+            <Pane layoutX="565.0" prefHeight="28.0" prefWidth="145.0">
+               <children>
+                  <ToggleButton fx:id="connectButton" layoutX="50.0" layoutY="1.0" maxHeight="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="92.0" style="-fx-background-radius: 15;" text="Connect" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </ToggleButton>
+                  <Circle fx:id="disconnectDiode" layoutX="30.0" layoutY="14.0" radius="9.0" stroke="WHITE" strokeType="INSIDE" translateX="7.0">
+                     <fill>
+                        <LinearGradient cycleMethod="REFLECT" endX="0.9428571428571428" endY="1.0" startX="0.5476190476190476" startY="0.5047619047619046">
+                           <stops>
+                              <Stop color="RED" />
+                              <Stop color="#ffecec" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Circle>
+                  <Circle fx:id="connectDiode" layoutX="37.0" layoutY="14.0" radius="9.0" stroke="WHITE" strokeType="INSIDE" visible="false">
+                     <fill>
+                        <LinearGradient cycleMethod="REFLECT" endX="0.9428571428571428" endY="1.0" startX="0.5476190476190476" startY="0.5047619047619046">
+                           <stops>
+                              <Stop color="#02ff00" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Circle>
+               </children>
+            </Pane>
+         </children>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+      </Pane>
+      <TabPane layoutX="3.0" layoutY="29.0" prefHeight="550.0" prefWidth="703.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="orderTab" text="Order">
+               <content>
+                  <Pane maxHeight="552.0" maxWidth="702.0" prefHeight="552.0" prefWidth="702.0">
+                     <children>
+                        <TableView fx:id="orderTable" fixedCellSize="0.0" layoutX="-1.0" layoutY="149.0" prefHeight="370.0" prefWidth="703.0" tableMenuButtonVisible="true">
+                           <contextMenu>
+                              <ContextMenu fx:id="contextMenu">
+                                <items>
+                                  <MenuItem fx:id="menuOrderContextDelete" mnemonicParsing="false" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></TableView>
+                        <Pane prefHeight="149.0" prefWidth="703.0">
+                           <children>
+                              <Pane fx:id="orderRadioPane" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #e0e0d1; -fx-border-color: #ccccb3;">
+                                 <children>
+                                    <RadioButton fx:id="selectOrderButton" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" text="SELECT" translateY="-10.0">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="orderGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="insertOrderButton" layoutX="19.0" layoutY="45.0" mnemonicParsing="false" text="INSERT" toggleGroup="$orderGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="deleteOrderButton" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" text="DELETE" toggleGroup="$orderGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="updateOrderButton" layoutX="19.0" layoutY="110.0" mnemonicParsing="false" text="UPDATE" toggleGroup="$orderGroup" translateY="-18.0" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="orderPane" layoutX="100.0" prefHeight="150.0" prefWidth="603.0">
+                                 <children>
+                                    <Label fx:id="orderIdLabel" layoutX="14.0" layoutY="14.0" text="Order ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderIdInput" alignment="CENTER" layoutX="82.0" layoutY="10.0" prefHeight="25.0" prefWidth="40.0" promptText="ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="priceLabel" contentDisplay="CENTER" layoutX="122.0" layoutY="14.0" text="Price" translateX="25.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets right="-3.0" />
+                                       </opaqueInsets>
+                                    </Label>
+                                    <TextField fx:id="orderPriceInput" alignment="CENTER" layoutX="177.0" layoutY="9.0" prefHeight="25.0" prefWidth="75.0" promptText="Price" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="orderStatusLabel" layoutX="268.0" layoutY="15.0" text="Status" translateX="25.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="orderDoneInput" contentDisplay="CENTER" layoutX="330.0" layoutY="14.0" mnemonicParsing="false" text="Done" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <Label fx:id="dateOfReceiptLabel" layoutX="-11.0" layoutY="65.0" text="Date of receipt" textAlignment="CENTER" translateX="25.0" translateY="-20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="orderProgressInput" layoutX="428.0" layoutY="15.0" mnemonicParsing="false" text="In Progress">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <DatePicker fx:id="orderDateOfReceipt" layoutX="119.0" layoutY="63.0" promptText="Date of receipt" translateY="-20.0" />
+                                    <Label fx:id="dateOfReturn" layoutX="312.0" layoutY="65.0" text="Date of return" textAlignment="CENTER" translateY="-20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="orderDateOfReturn" layoutX="415.0" layoutY="63.0" promptText="Date of return" translateY="-20.0" />
+                                    <Label fx:id="orderClientLabel" layoutX="14.0" layoutY="111.0" text="Client ID" translateY="-33.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderClientIDInput" layoutX="67.0" layoutY="106.0" promptText="Client ID" translateX="25.0" translateY="-33.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="orderEmployeeLabel" layoutX="316.0" layoutY="111.0" text="Employee ID" translateX="-10.0" translateY="-33.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderEmployeeIDInput" layoutX="394.0" layoutY="106.0" promptText="Employee ID" translateX="15.0" translateY="-33.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="orderRepairIDLabel" layoutX="14.0" layoutY="116.0" text="Repair ID" translateY="5.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderRepairIDInput" layoutX="87.0" layoutY="116.0" maxWidth="75.0" promptText="Repair ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></TextField>
+                                    <Label fx:id="orderPhoneModelLabel" layoutX="177.0" layoutY="121.0" text="Phone Model">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="orderPhoneModelInput" alignment="CENTER" layoutX="271.0" layoutY="116.0" maxWidth="120.0" promptText="Phone Model">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </content></Tab>
+            <Tab fx:id="repairTab" text="Repair">
+               <content>
+                  <Pane maxHeight="552.0" maxWidth="702.0" prefHeight="552.0" prefWidth="702.0">
+                     <children>
+                        <TableView fx:id="repairTable" layoutY="149.0" prefHeight="370.0" prefWidth="703.0" tableMenuButtonVisible="true">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem fx:id="menuRepairContextDelete" mnemonicParsing="false" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></TableView>
+                        <Pane prefHeight="149.0" prefWidth="703.0">
+                           <children>
+                              <Pane fx:id="repairRadioPane" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #e0e0d1; -fx-border-color: #ccccb3;">
+                                 <children>
+                                    <RadioButton fx:id="insertRepairButton" layoutX="19.0" layoutY="45.0" mnemonicParsing="false" text="INSERT" translateY="-15.0">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="repairGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="selectRepairButton" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" text="SELECT" toggleGroup="$repairGroup" translateY="-10.0" />
+                                    <RadioButton fx:id="deleteRepairButton" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" text="DELETE" toggleGroup="$repairGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="updateRepairButton" layoutX="19.0" layoutY="110.0" mnemonicParsing="false" text="UPDATE" toggleGroup="$repairGroup" translateY="-18.0" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="repairPane" layoutX="100.0" prefHeight="150.0" prefWidth="603.0">
+                                 <children>
+                                    <Label fx:id="repairIDLabel" layoutX="14.0" layoutY="35.0" text="Repair ID" translateX="95.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="repairIDInput" alignment="CENTER" layoutX="71.0" layoutY="30.0" prefHeight="30.0" prefWidth="75.0" promptText="Repair ID" translateX="110.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="repairDefectLabel" layoutX="159.0" layoutY="35.0" text="Defect" translateX="110.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="repairDefectInput" layoutX="217.0" layoutY="30.0" promptText="Defect" translateX="125.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="repairPriceLabel" layoutX="77.0" layoutY="83.0" text="Price of defect">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="repairPriceInput" layoutX="191.0" layoutY="78.0" prefHeight="30.0" prefWidth="60.0" promptText="Price">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="repairOrderIDLabel" layoutX="269.0" layoutY="83.0" text="Order ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="repairOrderIDInput" layoutX="342.0" layoutY="78.0" maxWidth="80.0" promptText="Oredr ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab fx:id="employeeTab" text="Employee">
+               <content>
+                  <Pane maxHeight="552.0" maxWidth="702.0" prefHeight="552.0" prefWidth="702.0">
+                     <children>
+                        <TableView fx:id="employeeTable" layoutX="-1.0" layoutY="149.0" prefHeight="370.0" prefWidth="703.0" tableMenuButtonVisible="true">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem fx:id="menuEmployeeContextDelete" mnemonicParsing="false" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></TableView>
+                        <Pane prefHeight="149.0" prefWidth="703.0">
+                           <children>
+                              <Pane fx:id="employeeRadioPane" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #e0e0d1; -fx-border-color: #ccccb3;">
+                                 <children>
+                                    <RadioButton fx:id="selectEmployeeButton" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" text="SELECT" translateY="-10.0">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="employeeGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="insertEmployeeButton" layoutX="19.0" layoutY="45.0" mnemonicParsing="false" text="INSERT" toggleGroup="$employeeGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="deleteEmployeeButton" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" text="DELETE" toggleGroup="$employeeGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="updateEmployeeButton" layoutX="19.0" layoutY="110.0" mnemonicParsing="false" text="UPDATE" toggleGroup="$employeeGroup" translateY="-18.0" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="employeePane" layoutX="100.0" prefHeight="150.0" prefWidth="603.0">
+                                 <children>
+                                    <Label fx:id="employeeIdLabel" layoutX="14.0" layoutY="14.0" text="Employee ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeeIdInput" layoutX="92.0" layoutY="9.0" maxWidth="40.0" promptText="ID" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="employeeFirstNameLabel" layoutX="147.0" layoutY="14.0" text="First Name" translateX="20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeeFirstNameInput" alignment="CENTER" layoutX="234.0" layoutY="9.0" maxWidth="100.0" promptText="First Name" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="employeeLastNameLabel" layoutX="349.0" layoutY="14.0" text="Last Name" translateX="20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeeLastNameInput" alignment="CENTER" layoutX="434.0" layoutY="9.0" maxWidth="100.0" promptText="Last Name" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="employeePhoneNumberLabel" layoutX="14.0" layoutY="55.0" text="Phone Number">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeePhoneNumberInput" layoutX="108.0" layoutY="50.0" maxWidth="125.0" promptText="Phone number" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="employeeEmailLabel" layoutX="249.0" layoutY="55.0" text="Email" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeeEmailInput" alignment="CENTER" layoutX="296.0" layoutY="50.0" maxWidth="200.0" promptText="Email" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="employeePeselLabel" layoutX="14.0" layoutY="92.0" text="Pesel">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeePeselInput" alignment="CENTER" layoutX="45.0" layoutY="87.0" maxWidth="125.0" promptText="Pesel" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="employeeSalaryLabel" layoutX="184.0" layoutY="92.0" text="Salary" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeeSalaryInput" alignment="CENTER" layoutX="235.0" layoutY="87.0" maxWidth="125.0" promptText="Salary" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="employeeAddressLabel" layoutX="384.0" layoutY="87.0" text="Address ID" translateY="5.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="employeeAddresssIDInput" alignment="CENTER" layoutX="464.0" layoutY="87.0" maxWidth="125.0" promptText="Addresss ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab fx:id="clientTab" text="Client">
+               <content>
+                  <Pane maxHeight="552.0" maxWidth="702.0" prefHeight="552.0" prefWidth="702.0">
+                     <children>
+                        <TableView fx:id="clientTable" layoutX="-1.0" layoutY="149.0" prefHeight="370.0" prefWidth="703.0" tableMenuButtonVisible="true">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem fx:id="menuContextClientDelete" mnemonicParsing="false" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></TableView>
+                        <Pane prefHeight="149.0" prefWidth="703.0">
+                           <children>
+                              <Pane fx:id="clientRadioPane" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #e0e0d1; -fx-border-color: #ccccb3;">
+                                 <children>
+                                    <RadioButton fx:id="selectClientButton" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" text="SELECT" translateY="-10.0">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="clientGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="insertClientButton" layoutX="19.0" layoutY="45.0" mnemonicParsing="false" text="INSERT" toggleGroup="$clientGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="deleteClientButton" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" text="DELETE" toggleGroup="$clientGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="updateClientButton" layoutX="19.0" layoutY="110.0" mnemonicParsing="false" text="UPDATE" toggleGroup="$clientGroup" translateY="-18.0" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="clientPane" layoutX="100.0" prefHeight="150.0" prefWidth="603.0">
+                                 <children>
+                                    <Label fx:id="clientIDLabel" layoutX="14.0" layoutY="14.0" text="Client ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="clientIDInput" layoutX="73.0" layoutY="9.0" maxWidth="40.0" promptText="ID" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="clientFirstNameLabel" layoutX="147.0" layoutY="14.0" text="First Name" translateX="20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="clientFirstNameInput" alignment="CENTER" layoutX="234.0" layoutY="9.0" maxWidth="100.0" promptText="First Name" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="clientLastNameLabel" layoutX="349.0" layoutY="14.0" text="Last Name" translateX="20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="clientLastNameInput" alignment="CENTER" layoutX="434.0" layoutY="9.0" maxWidth="100.0" promptText="Last Name" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="clientPhoneNumberLabel" layoutX="14.0" layoutY="55.0" text="Phone Number">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="clientPhoneNumberInput" layoutX="108.0" layoutY="50.0" maxWidth="125.0" promptText="Phone number" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="clientAddressIDLabel" layoutX="283.0" layoutY="55.0" text="Address ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="clientAddressIDInput" alignment="CENTER" layoutX="349.0" layoutY="50.0" maxWidth="125.0" promptText="Address ID" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab fx:id="addressTab" text="Address">
+               <content>
+                  <Pane maxHeight="552.0" maxWidth="702.0" prefHeight="552.0" prefWidth="702.0">
+                     <children>
+                        <TableView fx:id="addressTable" layoutX="-1.0" layoutY="149.0" prefHeight="370.0" prefWidth="703.0" tableMenuButtonVisible="true">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem fx:id="menuContextAddressDelete" mnemonicParsing="false" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></TableView>
+                        <Pane prefHeight="149.0" prefWidth="703.0">
+                           <children>
+                              <Pane fx:id="addressRadioPane" prefHeight="150.0" prefWidth="100.0" style="-fx-background-color: #e0e0d1; -fx-border-color: #ccccb3;">
+                                 <children>
+                                    <RadioButton fx:id="selectAddressButton" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" text="SELECT" translateY="-10.0">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="addressGroup" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="insertAddressButton" layoutX="19.0" layoutY="45.0" mnemonicParsing="false" text="INSERT" toggleGroup="$addressGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="deleteAddressButton" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" text="DELETE" toggleGroup="$addressGroup" translateY="-15.0" />
+                                    <RadioButton fx:id="updateAddressButton" layoutX="19.0" layoutY="110.0" mnemonicParsing="false" text="UPDATE" toggleGroup="$addressGroup" translateY="-18.0" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="addressPane" layoutX="100.0" prefHeight="150.0" prefWidth="603.0">
+                                 <children>
+                                    <Label fx:id="addressIDLabel" layoutX="14.0" layoutY="14.0" text="Address ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressIDInput" layoutX="73.0" layoutY="9.0" maxWidth="40.0" promptText="ID" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="addressCityLabel" layoutX="147.0" layoutY="14.0" text="City" translateX="20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressCityInput" alignment="CENTER" layoutX="193.0" layoutY="9.0" maxWidth="125.0" prefHeight="30.0" prefWidth="125.0" promptText="City" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="addressStreetLabel" layoutX="349.0" layoutY="14.0" text="Street" translateX="20.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressStreetInput" alignment="CENTER" layoutX="412.0" layoutY="9.0" maxWidth="125.0" prefHeight="30.0" prefWidth="125.0" promptText="Street" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="addressPinCodeLabel" layoutX="47.0" layoutY="55.0" text="Pin Code">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressPinCodeInput" alignment="CENTER" layoutX="106.0" layoutY="50.0" maxWidth="125.0" promptText="Pin Code" translateX="15.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="addressHomeNumberLabel" layoutX="279.0" layoutY="55.0" text="Home Number">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressHomeNumberInput" alignment="CENTER" layoutX="345.0" layoutY="50.0" maxWidth="125.0" promptText="Home Number" translateX="40.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="addressClientIDInput" alignment="CENTER" layoutX="100.0" layoutY="93.0" maxWidth="125.0" promptText="Client ID" translateX="25.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="addressClientIDLabel" layoutX="54.0" layoutY="98.0" text="Client ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addressEmployeeIDInput" alignment="CENTER" layoutX="345.0" layoutY="93.0" maxWidth="125.0" promptText="Employee ID" translateX="25.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label fx:id="addressEmployeeIDLabel" layoutX="279.0" layoutY="98.0" text="Employee ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab fx:id="functionTab" text="Functions">
+               <content>
+                  <Pane maxHeight="552.0" maxWidth="702.0" prefHeight="552.0" prefWidth="702.0">
+                     <children>
+                        <Pane prefHeight="142.0" prefWidth="703.0" style="-fx-border-color: #9a9797; -fx-background-color: #c1c1c1; -fx-border-width: 3 0 3 0;">
+                           <children>
+                              <TextArea editable="false" layoutX="10.0" layoutY="37.0" prefHeight="96.0" prefWidth="397.0" text="CREATE OR REPLACE FUNCTION &#10;ProfitPerOneEmployeeInYear&#10;(employeeID IN NUMBER, OurYear IN Number)               &#10;RETURN NUMBER &#10;IS  &#10;&#9;PRICE NUMBER;&#10;BEGIN    &#10;&#9;SELECT SUM( PRICE ) into PRICE FROM repair_order ro where ro.employee_id = employeeID and EXTRACT( year FROM ro.date_of_receipt ) = OurYear;    &#10;RETURN PRICE;&#10;END;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                              <TextField fx:id="functionFirstEmployeeIDInput" layoutX="540.0" layoutY="5.0" style="-fx-border-color: #a19e9e;" />
+                              <TextField fx:id="functionFirstYearInput" layoutX="540.0" layoutY="37.0" style="-fx-border-color: #a19e9e;" />
+                              <Label layoutX="450.0" layoutY="8.0" text="Employee ID">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="475.0" layoutY="40.0" text="Year">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="98.0" layoutY="7.0" text="The profit of one employee in the given year">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="470.0" layoutY="75.0" text="Result">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="functionFirstResult" editable="false" layoutX="540.0" layoutY="73.0" style="-fx-border-color: #a19e9e;" />
+                              <Button fx:id="functionFirstSubmit" layoutX="582.0" layoutY="103.0" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Submit">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane layoutY="173.0" prefHeight="142.0" prefWidth="703.0" style="-fx-border-color: #9a9797; -fx-background-color: #c1c1c1; -fx-border-width: 3 0 3 0;">
+                           <children>
+                              <TextArea editable="false" layoutX="10.0" layoutY="37.0" prefHeight="96.0" prefWidth="397.0" style="-fx-border-color: #a19e9e;" text="CREATE OR REPLACE&#10;FUNCTION GET_COUNT(order_STATUS IN VARCHAR)&#10;RETURN NUMBER&#10;IS&#10; &#9;V_COUNT NUMBER;&#10;BEGIN&#10; &#9;SELECT COUNT(*) INTO V_COUNT FROM REPAIR_ORDER O WHERE O.STATUS = order_STATUS; &#10;  &#9;RETURN V_COUNT;&#10;END;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                              <Label layoutX="470.0" layoutY="9.0" text="Status">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="98.0" layoutY="7.0" text="Number of orders with given status">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="470.0" layoutY="48.0" text="Result">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="functionSecondResult" editable="false" layoutX="539.0" layoutY="44.0" style="-fx-border-color: #a19e9e;" />
+                              <Button fx:id="functionSecondSubmit" layoutX="582.0" layoutY="103.0" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Submit">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="functionSecondBoxStatus" layoutX="539.0" layoutY="7.0" prefWidth="150.0" />
+                           </children>
+                        </Pane>
+                        <Pane layoutY="347.0" prefHeight="142.0" prefWidth="703.0" style="-fx-border-color: #9a9797; -fx-background-color: #c1c1c1; -fx-border-width: 3 0 3 0;">
+                           <children>
+                              <TextArea editable="false" layoutX="10.0" layoutY="37.0" prefHeight="96.0" prefWidth="397.0" text="CREATE OF REPLACE&#10;FUNCTION ProfitPerMonth&#10;(ourSTATUS IN VARCHAR, OurMonth Number)&#10;RETURN NUMBER&#10;IS&#10; &#9;PRICE NUMBER;&#10;BEGIN&#10;   &#9;SELECT AVG( PRICE ) into PRICE FROM repair_order ro where ro.status = ourStatus and EXTRACT( month FROM DATE_OF_RECEIPT ) = OurMonth; &#10;&#9;RETURN PRICE;&#10;END;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                              <Label layoutX="475.0" layoutY="40.0" text="Month">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="6.0" layoutY="8.0" text="Profit in the given month with the order of status highlighted">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="470.0" layoutY="75.0" text="Result">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="470.0" layoutY="8.0" text="Status">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="functionThirdResult" editable="false" layoutX="540.0" layoutY="73.0" style="-fx-border-color: #a19e9e;" />
+                              <Button fx:id="functionThirdSubmit" layoutX="582.0" layoutY="103.0" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Submit">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="functionThirdBoxStatus" layoutX="539.0" layoutY="6.0" prefWidth="150.0" />
+                              <ComboBox fx:id="functionThirdBoxMonth" layoutX="540.0" layoutY="38.0" prefWidth="150.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Pane layoutX="3.0" layoutY="610.0" prefHeight="53.0" prefWidth="703.0" style="-fx-background-color: #e0e0d1;">
+         <children>
+            <TextArea fx:id="messageConsole" editable="false" layoutY="-23.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="74.0" prefWidth="703.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="4.0" layoutY="177.0" prefHeight="30.0" prefWidth="99.0">
+         <children>
+            <Button fx:id="submitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="1.0" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Submit" textAlignment="CENTER" translateX="-10.0" translateY="-3.0">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+   <effect>
+      <Blend />
+   </effect>
+</AnchorPane>
