@@ -6,21 +6,21 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
             <!--POSTGRESS-->
-            <!--<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>-->
-            <!--<property name="javax.persistence.jdbc.user" value="postgres"/>-->
-            <!--<property name="javax.persistence.jdbc.password" value="admin"/>-->
-            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>-->
-            <!--<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/projectDB"/>-->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.password" value="admin"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/projectDB"/>
 
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.show_sql" value="false"/>
 
             <!--ORACLE-->
-            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-            <property name="javax.persistence.jdbc.user" value="seba"/>
-            <property name="javax.persistence.jdbc.password" value="sebasebaseba1"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/sebaDB"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+            <!--<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>-->
+            <!--<property name="javax.persistence.jdbc.user" value="seba"/>-->
+            <!--<property name="javax.persistence.jdbc.password" value="sebasebaseba1"/>-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521/sebaDB"/>-->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>-->
         </properties>
     </persistence-unit>
 

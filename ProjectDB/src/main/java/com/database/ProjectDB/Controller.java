@@ -23,9 +23,14 @@ import java.util.ResourceBundle;
 @Getter
 public class Controller implements Initializable {
 
-    private static Controller controllerInstance = new Controller();
+    private static Controller controllerInstance = null;
+
+    private Controller() {};
 
     public static Controller getControllerInstance() {
+        if (controllerInstance == null) {
+            controllerInstance = new Controller();
+        }
         return controllerInstance;
     }
 

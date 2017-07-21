@@ -18,12 +18,16 @@ public class ServiceDAO {
     public static boolean isConnected = false;
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    private static ServiceDAO ourInstance = new ServiceDAO();
+    private static ServiceDAO ourInstance = null;
+    private Controller controller = Controller.getControllerInstance();
     public static ServiceDAO getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new ServiceDAO();
+        }
         return ourInstance;
     }
-    private Controller controller = Controller.getControllerInstance();
 
+    private ServiceDAO(){}
 
     public void connectToDatabase() {
         WindowComponents.sendConsoleMessage("Connecting to database ...");
